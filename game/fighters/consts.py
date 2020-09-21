@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class TempCardDestination(str, Enum):
+class CollectionNames(str, Enum):
     HAND = 'HAND'
     RESERVE = 'RESERVE'
     DISCARD = 'DISCARD'

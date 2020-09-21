@@ -4,7 +4,7 @@ from game.cards.base import Card
 from game.cards.card import *
 
 
-def get_prepared_deck() -> List[Card]:
+def get_some_cards() -> List[Card]:
     return [
         Absetzen(),
         Zornhau1(),

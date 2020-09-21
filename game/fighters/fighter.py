@@ -3,8 +3,8 @@ from random import shuffle
 
 from game.cards.base import Card
 
-from .collections import Hand, Deck, Reserve, Discard, BaseCollection
-from .consts import TempCardDestination
+from .collections import Hand, Deck, Reserve, Discard, Collection
+from .consts import CollectionNames
 
 
 class Fighter:
@@ -23,12 +23,12 @@ class Fighter:
         assert self.temp_card is None
         self.temp_card = self.deck.draw()
 
-    def temp_to(self, destination: TempCardDestination):
+    def place_card_into(self, collection: CollectionNames):
         assert self.temp_card
-        mapping: Dict[TempCardDestination, BaseCollection] = {
-            TempCardDestination.HAND: self.hand,
-            TempCardDestination.RESERVE: self.reserve,
-            TempCardDestination.DISCARD: self.discard
+        mapping: Dict[CollectionNames, Collection] = {
+            CollectionNames.HAND: self.hand,
+            CollectionNames.RESERVE: self.reserve,
+            CollectionNames.DISCARD: self.discard
         }
-        mapping[destination].append(self.temp_card)
+        mapping[collection].append(self.temp_card)
         self.temp_card = None
