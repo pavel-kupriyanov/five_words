@@ -1,22 +1,23 @@
-from typing import List, Optional, Dict
+from typing import Optional, Dict
 from random import shuffle
+from copy import copy
 
-from game.cards.base import Card
-
-from .collections import Hand, Deck, Reserve, Discard, Collection
+from game.cards import Cards, Card, Hand, Deck, Reserve, Discard, Collection
 from .consts import CollectionNames
 
 
 class Fighter:
 
-    def __init__(self, name: str, deck: List[Card]):
+    def __init__(self, name: str, cards: Cards):
+        cards = copy(cards)
+        shuffle(cards)
         self.name = name
         # maybe use descriptors?
         self.temp_card: Optional[Card] = None
         self.hand = Hand()
         self.reserve = Reserve()
         self.discard = Discard()
-        self.deck = Deck(shuffle(deck))
+        self.deck = Deck(initial=cards)
 
     def draw(self):
         # TODO: think about error handling

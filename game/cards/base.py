@@ -1,3 +1,5 @@
+from typing import List
+
 class Card:
     number: int
 
@@ -16,3 +18,6 @@ class GrappleCard(Card):
 
 class SpecialCard(Card):
     pass
+
+
+Cards = List[Card]

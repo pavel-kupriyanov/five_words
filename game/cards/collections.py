@@ -1,12 +1,13 @@
-from typing import List, Optional
+from typing import  Optional
 
-from game.cards.base import Card
+from .base import Card, Cards
 
 
+# TODO: move into cards module
 class Collection:
     LIMIT = 0
 
-    def __init__(self, initial: Optional[List[Card]] = None, max_cards=LIMIT):
+    def __init__(self, initial: Optional[Cards] = None, max_cards=LIMIT):
         if initial is None:
             initial = []
         self._collection = initial
@@ -34,7 +35,7 @@ class Reserve(Collection):
 class Deck(Collection):
 
     def draw(self) -> Card:
-        assert not self
+        assert len(self)
         return self._collection.pop()
 
 

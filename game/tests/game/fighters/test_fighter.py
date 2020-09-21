@@ -10,7 +10,7 @@ def get_cards() -> Cards:
 
 
 def test_draw_cards(cards: Cards):
-    giacomo = Fighter(name='Giacomo Vonzazzo', deck=cards)
+    giacomo = Fighter('Giacomo Vonzazzo', cards)
     collections = {
         CollectionNames.HAND: [],
         CollectionNames.RESERVE: [],
@@ -22,4 +22,8 @@ def test_draw_cards(cards: Cards):
             destination_cards.append(giacomo.temp_card)
             giacomo.place_card_into(destination)
 
-    print(collections)
+    assert all(map(len, collections.values()))
+    number_of_cards = list(map(len, [giacomo.reserve, giacomo.hand, giacomo.discard]))
+    assert all(number_of_cards)
+    assert len(giacomo.deck) == len(cards) - sum(number_of_cards)
+    assert giacomo.temp_card is None

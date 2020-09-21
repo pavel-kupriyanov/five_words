@@ -2,12 +2,8 @@
 Shortcut for class imports
 """
 
-from typing import List
-
-from .cards import Card
+from .cards import Card, Cards
 from .fighters import Fighter
-
-Cards = List[Card]
 
 __all__ = [
     Card,
