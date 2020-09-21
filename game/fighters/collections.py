@@ -9,18 +9,18 @@ class Collection:
     def __init__(self, initial: Optional[List[Card]] = None, max_cards=LIMIT):
         if initial is None:
             initial = []
-        self.__collection = initial
+        self._collection = initial
         self.limit = max_cards
 
     def __len__(self):
-        return len(self.__collection)
+        return len(self._collection)
 
     def __repr__(self) -> str:
         return f'{str(type(self))} with {len(self)} cards.'
 
     def append(self, card: Card):
         assert not self.limit or len(self) < self.limit
-        self.__collection.insert(0, card)
+        self._collection.insert(0, card)
 
 
 class Hand(Collection):
@@ -35,7 +35,7 @@ class Deck(Collection):
 
     def draw(self) -> Card:
         assert not self
-        return self.__collection.pop()
+        return self._collection.pop()
 
 
 class Discard(Collection):
